@@ -1,0 +1,24 @@
+extends base
+block title
+	title= request.args.s or tags.join('+') or category.title or site.title
+
+block content
+	for post in posts
+		.item
+				span
+					a.title(href=post.url)= post.title
+				span.date= post.date.format('%Y-%m-%d %H:%M')
+				.raw_content= 'row_content'
+				.tags
+					for tag in post.tags
+						span.tag_item
+							a(href='/tags/'+tag)= tag
+					if post.visits
+						span.visit_count
+							访问量：{{post.visits}}
+					else
+						span.visit_count= '访问量：0' 
+	include include/paginator
+
+block side_content
+	include include/tag_cloud_count
