@@ -5,6 +5,8 @@ if request.args.use == 'tags'
 	entries = group(total_posts, 'tags')
 elif request.args.use == 'categories'
 	entries = group(total_posts, 'parent_path')
+elif request.args.use == 'xxx'
+	entries = group(total_posts, 'category')
 else
 	entries = group(total_posts, 'date:year', reverse=True)
 
