@@ -18,20 +18,20 @@ html
 					ul.nav
 						li
 							a(href="/") Home
+						if has('posts')
+							li
+								a(href='/archive') Archive
+						if has('categories')
+							li
+								a(href='/archive?use=categories') Categories
+						if site.tags
+							li
+								a(href='/archive?use=tags') Tags
 						if has('Photos')
 							li
 								a(href='/album') Albums
 							if not has('posts')
 								+redirect('/album')
-						if has('categories')
-							li
-								a(href='/categories') Categories
-						if has('posts')
-							li
-								a(href='/archive') Archive
-						if site.tags
-							li
-								a(href='/archive?use=tags') Tags
 						pages = get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
 						for page_p in pages
 							li
