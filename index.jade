@@ -6,9 +6,13 @@ block content
 	for post in posts
 		.item
 				span
+					i.icon_.icon_title
 					a.title(href=post.url)= post.title
+				span.category
+					a(href="/categories/{{post.metadata.category}}")
+						分类：{{post.metadata.category}}
 				span.date= post.date.format('%Y-%m-%d %H:%M')
-				.raw_content= 'row_content'
+				.raw_content= post.content.limit(100)
 				.tags
 					for tag in post.tags
 						span.tag_item
@@ -18,6 +22,7 @@ block content
 							访问量：{{post.visits}}
 					else
 						span.visit_count= '访问量：0' 
+				.clear
 	include include/paginator
 
 block side_content

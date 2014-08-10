@@ -71,33 +71,56 @@ a {
 }
 
 .item{
-	background-color: #eeeeee;
+	background-color: #848257;
 	border-radius: 10px;
 	padding: 10px;
 	margin-bottom: 20px;
-}
-.item .title{
-	color: #222222;
-	font-size: 20px;
-	font-weight: bold;
-}
-.item .title:hover{
-	color: yellow;
-	background-color: red;
-}
-.item .title:active{
-	color: #222222;
-}
+	.icon_title{
+		background-position: -72px -47px;
+	}
+	.title{
+		color: #222222;
+		font-size: 20px;
+		font-weight: bold;
+		border-radius: 3px;
+		margin-right: 10px;
+		padding: 0px 6px;
+	}
+	.title:hover{
+		color: white;
+		background-color: #fcc140;
+	}
+	.title:active{
+		color: #222222;
+		font-size: 22px;
+	}
 
-.item .date{
-	line-height: 20px;
-	font-size: 14px;
-	color: #999999;
-	float:right;
-}
+	.date{
+		line-height: 20px;
+		font-size: 14px;
+		color: #999999;
+		float:right;
+	}
 
-.raw_content{
-	color: #666666;
+	.raw_content{
+		color: #fcc140;
+		font-family: Kaiti;
+		font-style: italic;
+	}
+
+	.category{
+		border-radius: 3px;
+		a{
+			color: #672900;
+			padding: 0px 3px;
+		}
+		a:hover{
+			background-color: #672000;
+			color: white;
+		}
+		a:active{
+		}
+	}
 }
 .tags{
 	margin-top:4px;
@@ -121,7 +144,8 @@ a {
 .visit_count{
 	color: red;
 	background-color: pink;
-	border-radius: 2px;
+	border-radius: 3px;
+	padding: 0px 4px;
 	float:right;
 }
 .tag_cloud{
