@@ -24,12 +24,15 @@ TODO
 ----
 - 清理一下原来模板的CSS
 - 导航栏太丑
-- 首行缩进有问题
 - Post样式需要重新弄一下
 - 侧边栏标签计数还没弄好，后边可以做个标签云
 - 把访问计数加进去
 - 想起来再说
+- `Done` 首行缩进有问题
+	>配置里边有
+
 - `Done` Category分类看看能不能在Post中指定，不用文件夹来代表分类
+	
 	>	Post中的信息是作为post的metadata存放的，在文章中加入category信息，代码中用
 		`.category= post.metadata.category`引用就可以了。
 
