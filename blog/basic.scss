@@ -274,7 +274,10 @@ body {
 		overflow: hidden;
 	}
 
-
+	.codehilite{
+		font-size: 1.2rem;
+		line-height: 1.2rem;
+	}
 	.codehilite code, .codehilite pre {
 		word-break: break-word;
 		color: #fdce93;

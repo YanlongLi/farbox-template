@@ -5,12 +5,12 @@ block title
 block content
 	for post in posts
 		.item
-				span
-					i.icon_.icon_title
-					a.title(href=post.url)= post.title
 				span.category
+					i.icon_.icon_title
 					a(href="/categories/{{post.metadata.category}}")
 						分类：{{post.metadata.category}}
+				span
+					a.title(href=post.url)= post.title
 				span.date= post.date.format('%Y-%m-%d %H:%M')
 				.raw_content= post.content.limit(100)
 				.tags

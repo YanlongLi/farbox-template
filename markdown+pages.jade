@@ -4,6 +4,6 @@ if request.path.startswith('/pages')
 block title
 	title= post.title
 block content
-	div(style="background-color:#cccccc;padding:10px 6px;")= post.content
+	.post_panel= post.content
 	.post.markdown_container
 		.post_body.markdown_body
