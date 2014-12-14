@@ -1,0 +1,82 @@
+extends base
+
+t = request.path.split('/')
+
+block title
+	if t[1] == 'date'
+		title
+			{{t[2][:4]}}年{{t[2][4:6]}}月
+	elif t[1] == 'tags'
+		title
+			标签：{{t[2]}}
+	else
+		title
+			分类：{{t[2]}}
+
+
+block content
+	if t[1] == 'date'
+		total_posts = get_posts(limit=300, sort='desc')
+		.post_group
+			.group_name
+				{{t[2][:4]}}年{{t[2][4:6]}}月
+			ul
+				for post in total_posts
+					if post.date.format('%Y%m') == t[2]
+						li.post_item
+							span.date
+								[{{post.date | date("%Y-%m-%d") }}]
+							span.category
+								a(href="/categories/{{post.metadata.category}}")
+									分类：{{post.metadata.category}}
+							span.title
+								a(href="{{ post.url }}")= post.title
+							for tag in post.tags
+								span.tag_item
+									a(href="/tags/{{tag}}")= tag
+							span.visit_count
+								访问量：{{ post.visits or 0 }}
+	elif t[1] == 'tags'
+		total_posts = get_posts(limit=300, sort='desc')
+		.post_group
+			.group_name
+				标签：{{t[2]}}
+			ul
+				for post in total_posts
+					if post.tags
+						for t in post.tags
+							if t == '{{t[2]}}'
+								li.post_item
+									span.date(style='margin-right=10px;')
+										[{{post.date | date("%Y-%m-%d") }}]
+									span.category(style='margin-right=10px;')
+										a(href="/categories/{{post.metadata.category}}")
+											分类：{{post.metadata.category}}
+									span.title(style='margin-right=10px;')
+										a(href="{{ post.url }}")= post.title
+									for tag in post.tags
+										span.tag_item
+											a(href="/tags/{{tag}}")= tag
+									span.visit_count
+										访问量：{{ post.visits or 0 }}
+	else
+		total_posts = get_posts(limit=300, sort='desc')
+		.post_group
+			.group_name
+				{{t[2]}}
+			ul
+				for post in total_posts
+					if post.metadata.category == t[2]
+						li.post_item
+							span.date(style='margin-right=10px;')
+								[{{post.date | date("%Y-%m-%d") }}]
+							span.title(style='margin-right=10px;')
+								a(href="{{ post.url }}")= post.title
+							for tag in post.tags
+								span.tag_item
+									a(href="/tags/{{tag}}")= tag
+							span.visit_count
+								访问量：{{ post.visits or 0 }}
+
+block side_content
+	include include/tag_cloud_count

@@ -5,6 +5,8 @@ html
 		block title
 			title= request.args.s or post.title or tags.join('+') or category.title or site.title
 		load('fonts /template/blog/basic.scss /template/blog/style.scss')
+		script
+
 	body
 		#body_wrapper
 			if site.configs.cover and has(site.configs.cover)
