@@ -1,55 +1,47 @@
 html
+	+i18n('Home', '首页', 'zh_cn')
+	+i18n('Albums', '相册', 'zh_cn')
+	+i18n('Categories', '分类', 'zh_cn')
+	+i18n('Archive', '归档', 'zh_cn')
+	+i18n('Tags', '标签', 'zh_cn')
+	+i18n('About', '关于', 'zh_cn')
+	+i18n('Links', '友链', 'zh_cn')
+	+i18n('RSS', '订阅', 'zh_cn')
 	head
 		meta(name="keywords", content=site.configs.keywords.escaped)
 		meta(name="description", content=site.raw_content.escaped)
 		block title
 			title= request.args.s or post.title or tags.join('+') or category.title or site.title
-		load('fonts /template/blog/basic.scss /template/blog/style.scss')
-		script
-
+		link(rel='stylesheet', href='/template/css/blog.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+			
 	body
-		#body_wrapper
-			if site.configs.cover and has(site.configs.cover)
-				site_cover = site.configs.cover
-			else
-				site_cover = '/farbox_free_image.jpg'
-			#header.header(style="background-image: url({{site_cover}}?height=428&width=1280&fixed=true)")
-				.header_wrapper
-					h1.title
-						a(href='/')= site.title
-					ul.nav
-						li
-							a(href="/") Home
-						if has('posts')
-							li
-								a(href='/archive') Archive
-						if has('categories')
-							li
-								a(href='/archive?use=categories') Categories
-						if site.tags
-							li
-								a(href='/archive?use=tags') Tags
-						if has('Photos')
-							li
-								a(href='/album') Albums
-							if not has('posts')
-								+redirect('/album')
-						pages = get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
-						for page_p in pages
-							li
-								a(href="/{{page_p.path}}")= page_p.filename.split('.')[0].title()
-						li
-							a(href="/feed") RSS
-					.description_panel= site.raw_content
-			.left_frame
-				.container
-					block content
-			.right_frame
-				.side_container
-					block side_content
-			.clear
-			#footer
-				.powered_by
-					a(href="https://www.farbox.com", target="_blank") Powered By FarBox.com
-					a(href="/admin") Admin
-					span ©2012-2015 Z.R.E.Y Inc.
+		div.blog-masthead
+			div.container
+				nav.blog-nav
+					a.blog-nav-item.active(href='/')= _('Home')
+					if has('categories')
+						a.blog-nav-item(href='/archive?use=categories')= _('Categories')
+					if has('posts')
+						a.blog-nav-item(href='/archive')= _('Archive')
+					if site.tags
+						a.blog-nav-item(href='/archive?use=tags')= _('Tags')
+					if has('images')
+						a.blog-nav-item(href='/album')= _('Albums')
+						if not has('posts')
+							+redirect('/album')
+					pages = get_data(status='pages', type='post', limit=5, with_page=False, sort='position')
+					for page_p in pages
+						a.blog-nav-item(href="/{{page_p.path}}")= _(page_p.filename.split('.')[0].title())
+					a.blog-nav-item(href="/feed")= _('RSS')
+
+		div.container
+			div.row
+				div.col-sm-8.blog-main
+					block blog_main
+				div.col-sm-3.col-sm-offset-1.blog-sidebar
+					block blog_sidebar
+		footer.blog-footer hahah
+

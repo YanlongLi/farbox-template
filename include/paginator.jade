@@ -1,7 +1,7 @@
 if paginator.has_pre or paginator.has_next
-	.clear
-	.pager
-		if paginator.has_pre
-			a.round.pre(href=paginator.pre_url) Pre
-		if paginator.has_next
-			a.round.next(href=paginator.next_url) Next
+	nav
+		ul.pager
+			if paginator.has_pre
+				a(href=paginator.pre_url) Previous
+			if paginator.has_next
+				a(href=paginator.next_url) Next

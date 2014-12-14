@@ -1,6 +1,6 @@
-.side_frame.tag_cloud
+div.sidebar-module
+	h4 标签
 	for tag_name, tag_count in site.tags
-		.tag_item(style='float:left;')
-			i.icon_.icon_tag
-			a(href='/tags/'+tag_name)= tag_name+'('+tag_count+')'
-	.clear
+		a(href='/tags/'+tag_name)
+			{{tag_name}}({{tag_count}})
+				

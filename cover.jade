@@ -1,0 +1,37 @@
+html
+	head
+		meta(name="keywords", content=site.configs.keywords.escaped)
+		meta(name="description", content=site.raw_content.escaped)
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(name='author', content='YanlongLi')
+		meta(http-equiv='X-UA-Compatible', content="IE=edge")
+		block title
+			title= request.args.s or post.title or tags.join('+') or category.title or site.title
+		link(rel='stylesheet', href='/template/css/cover.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
+		link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css')
+		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js')
+			
+	body
+		div.site-wrapper
+			div.site-wrapper-inner
+				div.cover-container
+					div.masthead.clearfix
+						div.inner
+							h3.masthead-brand Cover
+							nav
+								ul.nav.masthead-nav
+									li.active
+										a Home
+									li
+										a Features
+									li
+										a Contact
+					div.inner.cover
+						h1.cover-heading= site.title
+						p.lead= site.raw_content.escaped
+						p.lead
+							a(href="/about.md").btn.btn-lg.btn-default About Me
+					div.mastfoot
+						div.inner
+							p haha
